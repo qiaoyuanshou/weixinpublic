@@ -23,10 +23,10 @@ public class CoreServiceImpl implements CoreService {
     public static Logger log = Logger.getLogger(CoreServiceImpl.class);
 
     @Resource
-    ContentResp contentResp;
+    private ContentResp contentResp;
 
     @Resource
-    EeventResp eeventResp;
+    private EeventResp eeventResp;
 
     @Override
     public String processRequest(HttpServletRequest request) {
@@ -43,8 +43,10 @@ public class CoreServiceImpl implements CoreService {
             // 消息类型
             String CreateTime = requestMap.get("CreateTime");
 
-            TextMessage textMessage = getTextMessage(fromUserName, toUserName, CreateTime);//文字回复
-            NewsMessage newsMessage = getNewsMessage(fromUserName, toUserName);//图文回复
+            //文字回复
+            TextMessage textMessage = getTextMessage(fromUserName, toUserName, CreateTime);
+            //图文回复
+            NewsMessage newsMessage = getNewsMessage(fromUserName, toUserName);
             List<Article> articleList = new ArrayList<Article>();
 
             if (msgType.equals(Constant.REQ_MESSAGE_TYPE_TEXT)) {
@@ -66,7 +68,7 @@ public class CoreServiceImpl implements CoreService {
         NewsMessage newsMessage = new NewsMessage();
         newsMessage.setToUserName(fromUserName);
         newsMessage.setFromUserName(toUserName);
-        newsMessage.setCreateTime(new Date().getTime());
+        newsMessage.setCreateTime(System.currentTimeMillis());
         newsMessage.setMsgType(Constant.RESP_MESSAGE_TYPE_NEWS);
         newsMessage.setFuncFlag(0);
         return newsMessage;
@@ -76,7 +78,7 @@ public class CoreServiceImpl implements CoreService {
         TextMessage textMessage = new TextMessage();
         textMessage.setToUserName(fromUserName);
         textMessage.setFromUserName(toUserName);
-        textMessage.setCreateTime(new Date().getTime());
+        textMessage.setCreateTime(System.currentTimeMillis());
         textMessage.setMsgType(Constant.RESP_MESSAGE_TYPE_TEXT);
         textMessage.setFuncFlag(0);
         return textMessage;

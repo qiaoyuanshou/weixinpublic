@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="duang:war">
+  <artifact type="war" name="weixinpublic:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="duang.war">
-      <element id="artifact" artifact-name="duang:war exploded" />
+      <element id="artifact" artifact-name="weixinpublic:war exploded" />
     </root>
   </artifact>
 </component>
